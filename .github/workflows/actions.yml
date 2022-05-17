@@ -1,2 +1,0 @@
-- name: Build an Alfred Workflow
-  uses: mperezi/build-alfred-workflow@v1.0.1
