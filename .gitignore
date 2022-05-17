@@ -104,3 +104,4 @@ dist
 .tern-port
 
 cache.json
+.DS_Store
