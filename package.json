@@ -1,0 +1,15 @@
+{
+  "name": "njt-alfred-workflow",
+  "version": "0.0.1",
+  "description": "An alfred workflow for njt",
+  "repository": "https://github.com/jacksonhardaker/njt-alfred-workflow.git",
+  "author": "Jackson Hardaker <jackson.hardaker@gmail.com>",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "fast-glob": "^3.2.11",
+    "jszip": "^3.9.1"
+  },
+  "scripts": {
+    "zip": "node zip.js"
+  }
+}
