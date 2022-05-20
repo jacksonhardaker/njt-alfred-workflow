@@ -5,7 +5,8 @@ const [https, fs, { CACHE_PATH }] = [
 ];
 
 let [, , input = ""] = process.argv;
-input = input.trim();
+input = input.trimStart();
+let [cmd, query = ""] = input.split(" ");
 
 const fetchFromRemote = () => {
   return new Promise((resolve, reject) => {
@@ -50,7 +51,7 @@ const fetchFromRemote = () => {
     const destinations = destinationsBlock.match(/(-\s`[a-z.]`\s→\s[^\n]+)/g);
     const njtCommands = destinations.map((line) => {
       const [, key, subtitle] = line.match(/`([a-z.])`\s→\s(.*)$/);
-      return { arg: `${key} `, title: key, subtitle };
+      return { arg: `${key}`, title: `${key} <package>`, subtitle };
     });
     output = {
       items: [
@@ -63,8 +64,13 @@ const fetchFromRemote = () => {
   }
 
   output.items = output.items.filter(({ title }) =>
-    title.match(RegExp(`^${input}`))
+    title.match(RegExp(`^${cmd}`))
   );
+
+  output.items = output.items.map((item) => ({
+    ...item,
+    arg: `${item.arg} ${query}`.trim(),
+  }));
 
   console.log(JSON.stringify(output));
 })();
